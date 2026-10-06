@@ -1,0 +1,39 @@
+$kind: http-request
+url: "{{server}}/users/register"
+method: POST
+body:
+  type: formdata
+  content:
+    - type: text
+      key: fullName
+      value: sagar nikat
+      description: ""
+      disabled: false
+    - type: file
+      key: avatar
+      src:
+        - /home/sagar/code/chess raylib/assets/bb.png
+      description: ""
+      disabled: false
+    - type: file
+      key: coverImage
+      src:
+        - /home/sagar/code/chess raylib/assets/bk.png
+      description: ""
+      disabled: false
+    - type: text
+      key: email
+      value: sagarnikat782536@gmail.com
+      description: ""
+      disabled: false
+    - type: text
+      key: password
+      value: poqiheeeeencke
+      description: ""
+      disabled: false
+    - type: text
+      key: username
+      value: hiiamnotgood
+      description: ""
+      disabled: false
+order: 1791278408354

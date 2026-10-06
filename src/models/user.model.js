@@ -26,11 +26,11 @@ const UserSchema = new mongoose.Schema(
             index : true
         },
         avatar:{
-            type: string, // claoudinary url
+            type: String, // claoudinary url
             required: true,
         },
         coverImage:{
-            type: string, // claoudinary url
+            type: String, // claoudinary url
         },
         watchHistory:{
             type: mongoose.Schema.Types.ObjectId,
@@ -42,17 +42,23 @@ const UserSchema = new mongoose.Schema(
             trim : true,
         },
         refreshToken: {
-            type : string,
+            type : String,
         }
     },{timestamps: true}
 )
 
-UserSchema.pre("save",async function (next){
-    if(!this.isModified("password")) return next();
+UserSchema.pre("save",async function (){
+    if(!this.isModified("password")) return ;
 
-    this.password = bcrypt.hash(this.password,10)
-    next()
+    this.password = await bcrypt.hash(this.password,10)
+    
 })
+// UserSchema.pre("save",async function (next){
+//     if(!this.isModified("password")) return next();
+
+//     this.password = await bcrypt.hash(this.password,10)
+//     next()
+// })
 
 UserSchema.methods.isPasswordCorrect = async function (password){
     return await bcrypt.compare(password,this.password)
@@ -72,7 +78,7 @@ UserSchema.methods.generateAccessToken = function(){
     )
 }
 
-userSchema.methods.generateRefreshToken = function(){
+UserSchema.methods.generateRefreshToken = function(){
     return jwt.sign(
         {
             _id: this._id,
