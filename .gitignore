@@ -120,5 +120,6 @@ dist
 
 # postman
 .postman
+postman/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Node
